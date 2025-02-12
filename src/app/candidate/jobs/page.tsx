@@ -59,7 +59,7 @@ export default async function JobListings() {
 import { useEffect, useState } from "react";
 
 async function fetchJobs(category = "", location = "", search = "") {
-  let url = `http://localhost:3002/api/jobs?category=${category}&location=${location}&search=${search}`;
+  const url = `http://localhost:3002/api/jobs?category=${category}&location=${location}&search=${search}`;
   const res = await fetch(url);
   return res.json();
 }

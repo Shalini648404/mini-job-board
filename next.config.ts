@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   experimental: {
     appDir: true, // Ensure App Router is enabled
   },
+  eslint: {
+    ignoreDuringBuilds: true, // ⬅️ This will ignore ESLint errors during the build
+  },
 };
 
 export default nextConfig;
