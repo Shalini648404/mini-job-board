@@ -3,9 +3,11 @@ import { db } from "@/lib/db"; // Ensure correct DB import
 //import { jobIdSchema } from "@/lib/validations"; // If validation exists
 
 // GET a specific job by ID
-export async function GET(req: NextRequest, context: { params: { id: string } }) {
+//export async function GET(req: NextRequest, context: { params: { id: string } }) {
+export async function GET(req: Request, { params }: { params: { id: string } } ) {
     try {
-        const { id } = context.params;
+        //const { id } = context.params;
+        const id = params.id;
         console.log("Fetching job with ID:", id);
 
         // Validate job ID (optional)
@@ -28,9 +30,12 @@ export async function GET(req: NextRequest, context: { params: { id: string } })
 }
 
 // PUT request to update a job
-export async function PUT(req: NextRequest, context: { params: { id: string } }) {
+//export async function PUT(req: NextRequest, context: { params: { id: string } }) {
+    export async function PUT(req: Request, { params }: { params: { id: string } }) {
+
     try {
-        const { id } = context.params;
+       // const { id } = context.params;
+       const id=params.id;
         const body = await req.json();
 
         console.log("Updating job with ID:", id, "Data:", body);
