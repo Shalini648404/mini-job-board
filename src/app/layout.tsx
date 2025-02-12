@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+/*import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -31,4 +31,18 @@ export default function RootLayout({
       </body>
     </html>
   );
+}*/
+
+import "@/app/globals.css";
+import { ReactNode } from "react";
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en">
+      <body className="bg-background text-foreground">
+        <main className="container mx-auto p-4">{children}</main>
+      </body>
+    </html>
+  );
 }
+
