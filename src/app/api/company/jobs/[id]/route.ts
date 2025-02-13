@@ -2,12 +2,19 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db"; // Ensure correct DB import
 //import { jobIdSchema } from "@/lib/validations"; // If validation exists
 
+
 // GET a specific job by ID
 //export async function GET(req: NextRequest, context: { params: { id: string } }) {
-export async function GET(req: Request, { params }: { params: { id: string } } ) {
+//export async function GET(req: NextRequest, { params }: { params: { id: string } } ) {
+   // export async function GET(req: NextRequest, { params }: Context) {
+    export async function GET(req: NextRequest, context: any) {
+
     try {
+        const { params } = context;
+        const { id } = params;
         //const { id } = context.params;
-        const id = params.id;
+       // const id = params.id;
+       //const {id} = params;
         console.log("Fetching job with ID:", id);
 
         // Validate job ID (optional)
@@ -31,11 +38,15 @@ export async function GET(req: Request, { params }: { params: { id: string } } )
 
 // PUT request to update a job
 //export async function PUT(req: NextRequest, context: { params: { id: string } }) {
-    export async function PUT(req: Request, { params }: { params: { id: string } }) {
+   // export async function PUT(req: Request, { params }: { params: { id: string } }) {
+    export async function PUT(req: NextRequest, context: any) {
 
-    try {
+        try {
+            const { params } = context;
+            const { id } = params;
+    //try {
        // const { id } = context.params;
-       const id=params.id;
+      // const id=params.id;
         const body = await req.json();
 
         console.log("Updating job with ID:", id, "Data:", body);
@@ -53,9 +64,14 @@ export async function GET(req: Request, { params }: { params: { id: string } } )
 }
 
 // DELETE request to remove a job
-export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
-    try {
-        const { id } = context.params;
+//export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
+  //  try {
+    //    const { id } = await context.params;
+    export async function DELETE(req: NextRequest, context: any) {
+
+        try {
+            const { params } = context;
+            const { id } =  await params;
 
         console.log("Deleting job with ID:", id);
 

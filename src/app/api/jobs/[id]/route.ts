@@ -6,12 +6,17 @@ import { prisma } from "@/lib/prisma";
 
 const jobIdSchema = z.string().uuid();
 
-export async function GET(req: NextRequest, context: { params: { id: string } }) {
-    try {
+//export async function GET(req: NextRequest, context: { params: { id: string } }) {
+  //  try {
         // Await the params correctly
-        const { id } = await context.params; // ✅ Awaited properly
+    //    const { id } = await context.params; // ✅ Awaited properly
 
         // Validate the job ID format
+    export async function GET(req: NextRequest, context: any) {
+
+        try {
+                const { params } = context;
+                const { id } = params;
         jobIdSchema.parse(id);
 
         // Fetch the job from the database
@@ -31,9 +36,19 @@ export async function GET(req: NextRequest, context: { params: { id: string } })
 }
 
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
-    try {
-        const jobId =  params.id;
+//export async function PUT(req: Request, { params }: { params: { id: string } }) {
+ //   try {
+  //      const jobId =  params.id;
+  
+        export async function PUT(req: Request, context: any) {
+
+        try{
+            const { params } = context;
+            const jobId = params.id;
+        
+            // Your existing logic here...
+        
+        
         const data = await req.json();
 
         const existingJob = await prisma.job.findUnique({ where: { id: jobId } });
@@ -72,9 +87,14 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
     }
 }*/
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
-    try {
-        const jobId = params.id; // Ensure params.id is correctly extracted
+//export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+    //try {
+      //  const jobId = params.id; // Ensure params.id is correctly extracted
+      export async function DELETE(req: Request, context: any) {
+        try{
+        const { params } = context;
+        const jobId = params.id;
+    
         if (!jobId) return NextResponse.json({ error: "Job ID is required" }, { status: 400 });
 
         // Check if job exists

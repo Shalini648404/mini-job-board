@@ -2,7 +2,12 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function ApplyPage({ params }: { params: { jobId: string } }) {
+
+interface ApplyPageProps {
+  params: { jobId: string };
+}
+ //export default function ApplyPage({ params }: { params: { jobId: string } }) {
+  export default function ApplyPage({ params }: ApplyPageProps) {
 
   const [formData, setFormData] = useState({ name: "", email: "", resume: "", coverLetter: "" });
   const router = useRouter();

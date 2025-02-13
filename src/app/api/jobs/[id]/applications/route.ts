@@ -5,11 +5,15 @@ import { prisma } from "@/lib/prisma";
 
 
 // app/api/jobs/[id]/applications/route.ts
-export async function GET(req: Request, { params }: { params: { id: string } }) {
-    try {
+//export async function GET(req: Request, { params }: { params: { id: string } }) {
+  //  try {
         //console.log("Received Params:", params); // Debugging
        // const { id: jobId } = await context.params;
-        const jobId =  params.id;
+    //    const jobId =  params.id;
+    export async function GET(req: Request, context: any) {
+        try {
+            const { params } = context;
+            const jobId = params.id;
 
         const jobExists = await prisma.job.findUnique({ where: { id: jobId } });
 
