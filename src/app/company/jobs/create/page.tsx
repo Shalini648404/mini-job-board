@@ -206,6 +206,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function CreateJob() {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3002";
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -222,7 +223,7 @@ export default function CreateJob() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await fetch('http://localhost:3002/api/company/jobs', {
+    const response = await fetch(`${API_URL}/api/company/jobs`, {
       method: 'POST',
       body: JSON.stringify(formData),
       headers: { 'Content-Type': 'application/json' },

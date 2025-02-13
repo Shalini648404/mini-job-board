@@ -76,12 +76,13 @@ export default function CompanyDashboard() {
   const [jobs, setJobs] = useState<Job[]>([]); // ✅ Set explicit type
   const router = useRouter();
   const companyId = "1";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3002";
 
   useEffect(() => {
     async function fetchJobs() {
       try {
         const response = await fetch(
-          `http://localhost:3002/api/company/jobs?companyId=${companyId}`,
+          `${API_URL}/api/company/jobs?companyId=${companyId}`,
           {
             method: "GET",
             headers: { "Content-Type": "application/json" },

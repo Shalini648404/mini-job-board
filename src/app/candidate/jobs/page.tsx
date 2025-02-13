@@ -119,7 +119,9 @@ interface Job {
 
 // Function to fetch jobs
 async function fetchJobs(category = "", location = "", search = ""): Promise<Job[]> {
-  const url = `http://localhost:3002/api/jobs?category=${category}&location=${location}&search=${search}`;
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3002";
+  //const url = `http://localhost:3002/api/jobs?category=${category}&location=${location}&search=${search}`;
+  const url = `${API_URL}/api/jobs?category=${category}&location=${location}&search=${search}`;
   const res = await fetch(url);
   return res.json();
 }
